@@ -42,18 +42,6 @@ LabVisionDistributed
 └── docs
 ```
 
-| Modul | Beschreibung |
-|--------|--------------|
-| **app** | Stellt die Weboberfläche bereit und startet den gesamten Workflow. |
-| **auth** | Überprüft die Anmeldedaten des Benutzers. |
-| **upload** | Nimmt den Bildnamen entgegen und leitet ihn an den Analysis-Service weiter. |
-| **analysis** | Analysiert das Bild und erstellt das Analyseergebnis. |
-| **report** | Erstellt aus dem Analyseergebnis einen Bericht. |
-| **common** | Enthält gemeinsam genutzte Klassen und Funktionen. |
-| **docs** | Enthält die Projektdokumentation, Screenshots und das Architekturdiagramm. |
-
----
-
 # Verteilte Architektur
 
 Die Anwendung besteht aus fünf unabhängigen Spring-Boot-Services.
@@ -69,30 +57,6 @@ Die Anwendung besteht aus fünf unabhängigen Spring-Boot-Services.
 ---
 
 # Kommunikationsablauf
-
-Der Ablauf der Anwendung erfolgt in folgender Reihenfolge:
-
-```text
-Browser
-   │
-   ▼
-App-Service (8082)
-   │
-   ▼
-Auth-Service (8081)
-   │
-   ▼
-Upload-Service (8083)
-   │
-   ▼
-Analysis-Service (8084)
-   │
-   ▼
-Report-Service (8085)
-   │
-   ▼
-Antwort an den Browser
-```
 
 Während des Ablaufs werden verschiedene Informationen zwischen den Services übertragen:
 
