@@ -147,7 +147,7 @@ Die einzelnen Services kommunizieren über HTTP-Anfragen miteinander. Jeder Serv
 
 Die folgende Abbildung zeigt den Ablauf der Kommunikation zwischen den einzelnen Services.
 
-**Abbildung 7: Kommunikationsablauf der Anwendung**
+**Abbildung 7: Kommunikationsablauf der Anwendung** 
 
 ![Architekturdiagramm](Architekturdiagramm.png)
 
