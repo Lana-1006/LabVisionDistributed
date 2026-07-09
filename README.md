@@ -54,33 +54,6 @@ LabVisionDistributed
 └── docs
 ```
 
-## 🏗️ Systemarchitektur
-
-```text
-                    Browser
-                       │
-                       ▼
-              App-Service (8082)
-                       │
-        ┌──────────────┴──────────────┐
-        ▼                             ▼
- Auth-Service                   Upload-Service
-   (8081)                          (8083)
-                                        │
-                                        ▼
-                              Analysis-Service
-                                    (8084)
-                                        │
-                                        ▼
-                               Report-Service
-                                    (8085)
-                                        │
-                                        ▼
-                              Antwort an Browser
-```
-
----
-
 ## 🔄 Workflow
 
 Der Ablauf der Anwendung erfolgt in mehreren Schritten:
