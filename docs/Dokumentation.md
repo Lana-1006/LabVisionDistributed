@@ -181,7 +181,7 @@ Browser
 
 **Abbildung 7: Kommunikationsablauf der Anwendung**
 
-*(Hier wird das Architekturdiagramm eingefügt.)*
+![Architekturdiagramm](Architekturdiagramm.png)
 
 ## 4.2 Kommunikation über HTTP
 
