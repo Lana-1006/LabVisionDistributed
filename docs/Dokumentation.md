@@ -20,11 +20,11 @@
 
 Im Rahmen des Moduls **Softwaretechnik** bestand die Aufgabe darin, eine modulare Anwendung in eine verteilte Anwendung umzuwandeln. Für mein Projekt habe ich mich für das Thema **LabVisionDistributed** entschieden.
 
-Die Idee für dieses Projekt entstand, weil ich zwei verschiedene Fachbereiche miteinander verbinden wollte. Ich studiere **Pharma- und Chemietechnik**, während meine Schwester **Informatik** studiert. Gemeinsam haben wir überlegt, wie sich Inhalte aus beiden Studiengängen in einem Projekt kombinieren lassen. Daraus entstand die Idee einer Anwendung zur Verarbeitung von Laborbildern, bei der die Softwarearchitektur im Mittelpunkt steht.
+Die Idee für dieses Projekt entstand, weil ich zwei verschiedene Fachbereiche miteinander verbinden wollte. Ich studiere **Wirtschaftsinformatik**, während meine Schwester **Pharma- und Chemietechnik** studiert hat. Meine Überlegungen waren, wie sich Inhalte aus beiden Studiengängen in einem Projekt kombinieren lassen. Daraus entstand die Idee einer Anwendung zur Verarbeitung von Laborbildern, bei der dann die Softwarearchitektur im Mittelpunkt steht.
 
 Das Projekt simuliert einen einfachen Ablauf aus einem Labor. Nach der Anmeldung wird ein Bild verarbeitet, analysiert und anschließend ein Bericht erstellt. Dabei steht nicht die eigentliche Bildanalyse im Vordergrund, sondern die Umsetzung einer verteilten Architektur. Ziel war es, den gesamten Workflow auf mehrere eigenständige Spring-Boot-Services aufzuteilen, die über HTTP miteinander kommunizieren.
 
-Während der Entwicklung war es mir wichtig, nicht nur die technischen Anforderungen der Aufgabe umzusetzen, sondern auch ein Projekt zu erstellen, das einen Bezug zu meinem eigenen Studium hat. Gleichzeitig konnte ich Ideen aus dem Informatikstudium meiner Schwester aufgreifen und besser verstehen, wie verteilte Anwendungen aufgebaut sind.
+Während der Entwicklung war es mir wichtig, nicht nur die technischen Anforderungen der Aufgabe umzusetzen, sondern auch ein Projekt zu erstellen, das einen Bezug zu dem Studium meiner Schwester hat. Gleichzeitig konnte ich Ideen aus dem Studium meiner Schwester aufgreifen und besser verstehen,aber auch wie verteilte Anwendungen aufgebaut sind.
 
 In dieser Dokumentation werden zunächst der Aufbau des Projekts und die einzelnen Services beschrieben. Anschließend wird erklärt, wie die Services miteinander kommunizieren, welche Daten zwischen ihnen ausgetauscht werden und wie die Anwendung gestartet und ausgeführt wird.
 
@@ -36,7 +36,7 @@ Aus diesem Grund habe ich mich für eine Multi-Modul-Struktur mit Spring Boot en
 
 Die folgende Abbildung zeigt den Aufbau des Projekts.
 
-**Abbildung 1: Projektstruktur von LabVisionDistributed**
+**Abbildung: Projektstruktur von LabVisionDistributed**
 
 ![Projektstruktur](screenshots/01-projektstruktur.png)
 
@@ -157,29 +157,7 @@ Der gesamte Workflow beginnt mit dem Aufruf der Webanwendung im Browser. Von dor
 
 Der Ablauf sieht folgendermaßen aus:
 
-```text
-Browser
-   │
-   ▼
-App-Service (8082)
-   │
-   ▼
-Auth-Service (8081)
-   │
-   ▼
-Upload-Service (8083)
-   │
-   ▼
-Analysis-Service (8084)
-   │
-   ▼
-Report-Service (8085)
-   │
-   ▼
-Browser
-```
-
-**Abbildung 7: Kommunikationsablauf der Anwendung**
+**Abbildung: Kommunikationsablauf der Anwendung**
 
 ![Architekturdiagramm](Architekturdiagramm.png)
 
@@ -247,7 +225,7 @@ Die Services wurden in folgender Reihenfolge gestartet:
 
 Die folgenden Abbildungen zeigen die erfolgreich gestarteten Services.
 
-### Abbildung 8: Auth-Service
+### Abbildung: Auth-Service
 
 ![Auth-Service](screenshots/02-auth-service.png)
 
@@ -255,7 +233,7 @@ Der Auth-Service wurde erfolgreich gestartet und wartet auf Anfragen auf Port 80
 
 ---
 
-### Abbildung 9: Upload-Service
+### Abbildung: Upload-Service
 
 ![Upload-Service](screenshots/03-upload-service.png)
 
@@ -263,7 +241,7 @@ Der Upload-Service läuft auf Port 8083 und ist bereit, den Bildnamen zu verarbe
 
 ---
 
-### Abbildung 10: Analysis-Service
+### Abbildung: Analysis-Service
 
 ![Analysis-Service](screenshots/04-analysis-service.png)
 
@@ -271,7 +249,7 @@ Der Analysis-Service wurde erfolgreich gestartet und verarbeitet später den Bil
 
 ---
 
-### Abbildung 11: Report-Service
+### Abbildung: Report-Service
 
 ![Report-Service](screenshots/05-report-service.png)
 
@@ -279,7 +257,7 @@ Der Report-Service läuft auf Port 8085 und erstellt den Bericht aus dem Analyse
 
 ---
 
-### Abbildung 12: App-Service
+### Abbildung: App-Service
 
 ![App-Service](screenshots/06-app-service.png)
 
@@ -295,7 +273,7 @@ http://localhost:8082
 
 Beim Aufruf der Seite startet der komplette Workflow automatisch. Die Webanwendung ruft nacheinander die einzelnen Services auf und zeigt die Ergebnisse anschließend übersichtlich im Browser an.
 
-**Abbildung 13: Ausführung der Anwendung**
+**Abbildung: Ausführung der Anwendung**
 
 ![Browser](screenshots/07-browser.png)
 
@@ -305,7 +283,7 @@ Während der Tests konnte ich gut nachvollziehen, wie die einzelnen Services zus
 
 # 6. Fazit
 
-Mit diesem Projekt konnte ich mein Wissen aus dem Modul Softwaretechnik praktisch anwenden und gleichzeitig eine Verbindung zu meinem eigenen Studium herstellen. Da ich Pharma- und Chemietechnik studiere und meine Schwester Informatik studiert, fand ich die Idee spannend, beide Fachrichtungen in einem gemeinsamen Projekt miteinander zu verbinden.
+Mit diesem Projekt konnte ich mein Wissen aus dem Modul Softwaretechnik praktisch anwenden und gleichzeitig eine Verbindung zu dem Bereich meiner Schwester herstellen. Es war spannend zu sehen wie beide Fachrichtungen in einem gemeinsamen Projekt miteinander in verbindung gebracht wurden.
 
 Während der Entwicklung habe ich nicht nur gelernt, wie mehrere Spring-Boot-Services aufgebaut werden, sondern vor allem, wie sie über HTTP miteinander kommunizieren und als eigenständige Prozesse zusammenarbeiten. Besonders interessant war für mich zu sehen, wie aus mehreren kleinen Services eine vollständige Anwendung entsteht.
 
