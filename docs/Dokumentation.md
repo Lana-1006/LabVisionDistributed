@@ -149,7 +149,7 @@ Die folgende Abbildung zeigt den Ablauf der Kommunikation zwischen den einzelnen
 
 **Abbildung 7: Kommunikationsablauf der Anwendung**
 
-*(Hier wird das Architekturdiagramm eingefügt.)*
+![Architekturdiagramm](Architekturdiagramm.png)
 
 ## 4.1 Ablauf der Kommunikation
 
