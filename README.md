@@ -1,22 +1,34 @@
-# LabVisionDistributed
+# 🔬 LabVisionDistributed
 
-## Projektbeschreibung und Ziel
-
-LabVisionDistributed ist eine verteilte Anwendung, die im Rahmen des Moduls **Softwaretechnik** entwickelt wurde.
-
-Ziel des Projekts war es, aus einer bestehenden modularen Anwendung eine verteilte Anwendung zu entwickeln. Dazu wurde die Anwendung in mehrere eigenständige Spring-Boot-Services aufgeteilt. Jeder Service übernimmt eine bestimmte Aufgabe und läuft als eigener Prozess auf einem eigenen Port.
-
-Im Gegensatz zu einer modularen Anwendung kommunizieren die einzelnen Services nicht mehr direkt über Java-Methoden, sondern ausschließlich über HTTP-Anfragen. Dadurch wird gezeigt, wie mehrere unabhängige Prozesse zusammenarbeiten und gemeinsam einen vollständigen Arbeitsablauf ausführen.
-
-Die Anwendung bildet einen einfachen Workflow zur Verarbeitung eines Laborbildes ab. Der Benutzer startet den Prozess über die Webanwendung. Zunächst werden die Anmeldedaten an den Auth-Service übermittelt. Nach erfolgreicher Anmeldung wird der Upload-Service aufgerufen, der den Bildnamen entgegennimmt und an den Analysis-Service weiterleitet. Der Analysis-Service analysiert das Bild und sendet das Analyseergebnis an den Report-Service. Dieser erstellt daraus einen Bericht und gibt das Ergebnis an die Webanwendung zurück.
-
-Mit diesem Projekt wird das Prinzip einer verteilten Architektur praktisch umgesetzt und gezeigt, wie mehrere Services über definierte HTTP-Schnittstellen miteinander kommunizieren.
+> **A distributed Spring Boot application demonstrating communication between independent services via HTTP.**
 
 ---
 
-# Verwendete Technologien
+## 📖 Projektübersicht
 
-Für die Entwicklung des Projekts wurden folgende Technologien verwendet:
+**LabVisionDistributed** ist eine verteilte Anwendung, die im Rahmen des Moduls **Softwaretechnik** entwickelt wurde.
+
+Ziel des Projekts war es, eine bestehende modulare Anwendung in eine **verteilte Architektur** umzuwandeln. Anstatt alle Funktionen innerhalb einer einzigen Anwendung auszuführen, wurde der Workflow auf mehrere eigenständige Spring-Boot-Services verteilt.
+
+Jeder Service übernimmt eine klar definierte Aufgabe und läuft als eigener Prozess auf einem eigenen Port. Die Kommunikation erfolgt ausschließlich über HTTP-Anfragen. Dadurch wird gezeigt, wie mehrere unabhängige Anwendungen zusammenarbeiten und gemeinsam einen vollständigen Workflow ausführen.
+
+Die Anwendung simuliert die Verarbeitung eines Laborbildes – von der Anmeldung über den Upload und die Analyse bis hin zur Erstellung eines Berichts.
+
+---
+
+## 🎯 Projektziel
+
+Das Projekt verfolgt folgende Ziele:
+
+- Umsetzung einer verteilten Anwendung mit Spring Boot
+- Trennung der einzelnen Funktionen in unabhängige Services
+- Kommunikation der Services über HTTP
+- Verständnis verteilter Systeme anhand eines praktischen Beispiels
+- Nachvollziehbare Dokumentation des gesamten Workflows
+
+---
+
+## 🛠️ Verwendete Technologien
 
 - Java 17
 - Spring Boot
@@ -24,11 +36,11 @@ Für die Entwicklung des Projekts wurden folgende Technologien verwendet:
 - REST / HTTP
 - Git
 - GitHub
-- Cursor (Visual Studio Code Clone)
+- Cursor
 
 ---
 
-# Projektstruktur
+## 📂 Projektstruktur
 
 ```text
 LabVisionDistributed
@@ -42,43 +54,67 @@ LabVisionDistributed
 └── docs
 ```
 
-# Verteilte Architektur
+## 🏗️ Systemarchitektur
 
-Die Anwendung besteht aus fünf unabhängigen Spring-Boot-Services.
-
-| Service | Port | Aufgabe |
-|----------|------|----------|
-| App-Service | **8082** | Einstiegspunkt der Anwendung und Bereitstellung der Weboberfläche |
-| Auth-Service | **8081** | Überprüfung der Anmeldedaten |
-| Upload-Service | **8083** | Verarbeitung des Bilduploads |
-| Analysis-Service | **8084** | Analyse des Bildes |
-| Report-Service | **8085** | Erstellung des Analyseberichts |
+```text
+                    Browser
+                       │
+                       ▼
+              App-Service (8082)
+                       │
+        ┌──────────────┴──────────────┐
+        ▼                             ▼
+ Auth-Service                   Upload-Service
+   (8081)                          (8083)
+                                        │
+                                        ▼
+                              Analysis-Service
+                                    (8084)
+                                        │
+                                        ▼
+                               Report-Service
+                                    (8085)
+                                        │
+                                        ▼
+                              Antwort an Browser
+```
 
 ---
 
-# Kommunikationsablauf
+## 🔄 Workflow
 
-Während des Ablaufs werden verschiedene Informationen zwischen den Services übertragen:
+Der Ablauf der Anwendung erfolgt in mehreren Schritten:
 
-- Der **App-Service** sendet Benutzername und Passwort an den **Auth-Service**.
-- Der **Auth-Service** überprüft die Anmeldedaten und sendet das Ergebnis an den App-Service zurück.
-- Anschließend wird der Bildname an den **Upload-Service** übergeben.
-- Der **Upload-Service** leitet den Bildnamen an den **Analysis-Service** weiter.
-- Der **Analysis-Service** erstellt das Analyseergebnis und sendet es an den **Report-Service**.
-- Der **Report-Service** erstellt den Bericht und liefert das Ergebnis an die Webanwendung zurück.
+1. Der Benutzer öffnet die Webanwendung.
+2. Der App-Service startet den Workflow.
+3. Die Anmeldung wird durch den Auth-Service geprüft.
+4. Der Bildname wird an den Upload-Service übergeben.
+5. Der Analysis-Service analysiert das Bild.
+6. Der Report-Service erstellt einen Bericht.
+7. Das Ergebnis wird im Browser angezeigt.
 
 ---
 
-# Dokumentation
+## 📑 Dokumentation
 
 Eine ausführliche Projektdokumentation befindet sich im Ordner **docs**.
 
-Die Dokumentation enthält:
+Die Dokumentation enthält unter anderem:
 
-- Beschreibung der Projektarchitektur
-- Erklärung der einzelnen Services
-- Beschreibung der Kommunikation zwischen den Services
-- Architekturdiagramm
+- Projektarchitektur
+- Beschreibung aller Services
+- Kommunikation zwischen den Services
+- Erklärung der HTTP-Aufrufe
 - Screenshots der gestarteten Prozesse
-- Screenshots der laufenden Anwendung
-- Erläuterung des Datenaustauschs über die einzelnen Ports
+- Browser-Ausgabe
+- Fazit
+
+---
+
+## 👨‍💻 Autor
+
+**Lana Abou-Shokair**
+
+Bachelorstudiengang **Wirtschaftsinformatik**
+
+Projekt im Modul **Softwaretechnik**
