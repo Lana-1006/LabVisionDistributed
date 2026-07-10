@@ -56,9 +56,7 @@ Bei der Entwicklung habe ich bewusst darauf geachtet, dass jedes Modul möglichs
 
 # 3. Beschreibung der Services
 
-Nachdem die Projektstruktur feststand, habe ich die Anwendung in mehrere eigenständige Services aufgeteilt. Mir war wichtig, dass jeder Service nur eine klar definierte Aufgabe übernimmt. Dadurch bleibt der Aufbau übersichtlich und der gesamte Workflow lässt sich leichter nachvollziehen.
-
-Anstatt alle Funktionen in einer einzigen Anwendung zu bündeln, arbeitet jeder Service unabhängig und übernimmt genau einen Teil des Ablaufs. Dieses Prinzip findet man auch in vielen modernen Softwaresystemen und war ein wichtiger Bestandteil dieser Projektarbeit.
+Nachdem die Projektstruktur feststand, habe ich die Anwendung in mehrere eigenständige Services aufgeteilt. Anstatt alle Funktionen in einer einzigen Anwendung zu bündeln, arbeitet jeder Service unabhängig und übernimmt genau einen Teil des Ablaufs. Dieses Prinzip findet man auch in vielen modernen Softwaresystemen und war ein wichtiger Bestandteil dieser Projektarbeit.
 
 Im Folgenden werden die einzelnen Services näher beschrieben.
 
@@ -82,9 +80,7 @@ Der Auth-Service läuft auf **Port 8081**.
 
 ## 3.2 Upload-Service
 
-Nach einer erfolgreichen Anmeldung übernimmt der Upload-Service den nächsten Schritt des Workflows. Seine Aufgabe besteht darin, den Bildnamen entgegenzunehmen.
-
-Da es in dieser Projektarbeit nicht um die Entwicklung einer echten Bildverwaltung ging, habe ich mich dafür entschieden, den Upload zu vereinfachen. Statt einer Bilddatei wird lediglich der Name des Bildes verarbeitet. Dadurch bleibt der Fokus auf der Kommunikation zwischen den einzelnen Services.
+Nach einer erfolgreichen Anmeldung übernimmt der Upload-Service den nächsten Schritt des Workflows. Seine Aufgabe besteht darin, den Bildnamen entgegenzunehmen. Statt einer Bilddatei wird lediglich der Name des Bildes verarbeitet. Dadurch bleibt der Fokus auf der Kommunikation zwischen den einzelnen Services.
 
 Der Upload-Service läuft auf **Port 8083**.
 
@@ -99,7 +95,6 @@ Der Upload-Service läuft auf **Port 8083**.
 ## 3.3 Analysis-Service
 
 Der Analysis-Service stellt den eigentlichen Kern des Workflows dar. Nachdem der Bildname übergeben wurde, wird eine Analyse durchgeführt und ein Analyseergebnis erstellt.
-
 Auch dieser Service wurde bewusst einfach umgesetzt. Für mich stand nicht die Entwicklung einer komplexen Bildanalyse im Vordergrund, sondern die Frage, wie sich eine Verarbeitung sinnvoll in einen eigenen Service auslagern lässt.
 
 Der Analysis-Service läuft auf **Port 8084**.
@@ -116,8 +111,6 @@ Der Analysis-Service läuft auf **Port 8084**.
 
 Nachdem die Analyse abgeschlossen wurde, übernimmt der Report-Service den letzten Verarbeitungsschritt. Er erstellt aus dem Analyseergebnis einen Bericht, der später in der Webanwendung angezeigt wird.
 
-Auch hier war mein Ziel nicht die Entwicklung eines umfangreichen Berichtssystems. Viel wichtiger war es, den gesamten Workflow durch einen weiteren eigenständigen Service zu vervollständigen und den Datenaustausch zwischen den einzelnen Prozessen sichtbar zu machen.
-
 Der Report-Service läuft auf **Port 8085**.
 
 **Aufgaben des Report-Services**
@@ -131,7 +124,6 @@ Der Report-Service läuft auf **Port 8085**.
 ## 3.5 App-Service
 
 Der App-Service verbindet alle anderen Services miteinander und bildet den Einstiegspunkt der Anwendung. Über ihn wird die Weboberfläche bereitgestellt, die der Benutzer im Browser aufruft.
-
 Ich habe mich bewusst dafür entschieden, dass der App-Service selbst keine fachlichen Aufgaben übernimmt. Stattdessen koordiniert er den gesamten Ablauf und ruft die einzelnen Services nacheinander auf. Dadurch bleibt die Verantwortung der einzelnen Services klar voneinander getrennt.
 
 Der App-Service läuft auf **Port 8082**.
@@ -146,9 +138,7 @@ Der App-Service läuft auf **Port 8082**.
 # 4. Kommunikation zwischen den Services
 
 Nachdem alle Services entwickelt waren, bestand die eigentliche Herausforderung darin, sie miteinander kommunizieren zu lassen. Da jeder Service als eigener Spring-Boot-Prozess läuft, können Informationen nicht einfach über Methoden oder gemeinsame Klassen ausgetauscht werden. Stattdessen erfolgt die gesamte Kommunikation über HTTP-Anfragen.
-
 Genau dieser Punkt unterscheidet eine verteilte Anwendung von einer klassischen Anwendung. Jeder Service arbeitet unabhängig und kennt nur seine eigene Aufgabe. Erst durch den Austausch der Daten über HTTP entsteht der vollständige Workflow.
-
 Mir war dabei wichtig, dass jeder Service möglichst wenig Verantwortung übernimmt. Jeder Service verarbeitet nur die Daten, die er für seine Aufgabe benötigt, und gibt anschließend das Ergebnis an den nächsten Service weiter. Dadurch bleibt die Anwendung übersichtlich und einzelne Services können später leichter erweitert oder ausgetauscht werden.
 
 ## 4.1 Ablauf des Workflows
